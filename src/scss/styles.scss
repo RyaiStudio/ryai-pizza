@@ -1,0 +1,115 @@
+@import "../../node_modules/bulma/bulma.sass";
+
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/regular.scss";
+
+@import "fonts";
+@import "variables";
+@import "mixin";
+@import "partials";
+
+/* header */
+nav.navbar {
+    background: cover;
+    padding: 0;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.18);
+    @include transition(all 0.5s);
+}
+
+nav.is-transparent {
+    background: transparent;
+    padding: 10px 0 !important;
+    box-shadow: none !important;
+
+    .navbar-start>a,
+    .navbar-link {
+        color: #fff;
+    }
+
+    .navbar-link:after {
+        border-color: #fff;
+    }
+
+    .navbar-dropdown {
+        .navbar-link {
+            color: #fff;
+        }
+    }
+
+    .navbar-item.has-dropdown {
+        .navbar-dropdown {
+            background: $bg-glass;
+
+            a.navbar-item:hover {
+                background-color: rgba(0, 0, 0, 0.08) !important;
+            }
+        }
+    }
+}
+
+.title {
+    font-family: $font-keepcalm;
+    font-size: $size-title;
+    line-height: 4.3rem;
+    margin-bottom: 3rem !important;
+}
+
+.subtitle {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+}
+
+.img-banner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero {
+    position: relative;
+}
+
+.hero-starter {
+    @include bg-linear-gradient(rgba(0, 0, 0, 0.84), rgba(224, 23, 3, 0.6));
+    padding: 0;
+    color: #fff;
+
+    .title,
+    .subtitle {
+        color: inherit;
+    }
+}
+
+/* brand */
+.list-brand {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    .item {
+        flex-basis: auto;
+        align-self: center;
+        flex-grow: 1;
+        text-align: center;
+        color: #dad9d9;
+
+        label {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+    }
+}
+
+.my-btn {
+    background: #2b0d09;
+    @include transition(.5s);
+    color: #d8d0d0;
+    border: 0;
+
+    &:hover {
+        color: #999e9b;
+    }
+}

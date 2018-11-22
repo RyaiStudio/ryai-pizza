@@ -1,0 +1,12 @@
+
+@media (max-width: $fullhd) and (min-width: $desktop) {
+    .home-floater {
+        padding: 2rem 3rem !important;
+        width: 70% !important;
+        font-size: 0.9rem;
+        .image {
+            height: 100px;
+            width: 100px;
+        }
+    }
+}

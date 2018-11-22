@@ -1,0 +1,81 @@
+/* margins */
+@mixin margin-top($property) {
+    margin-top: $property;
+}
+
+@mixin margin-right($property) {
+    margin-right: $property;
+}
+
+@mixin margin-bottom($property) {
+    margin-bottom: $property;
+}
+
+@mixin margin-left($property) {
+    margin-left: $property;
+}
+
+@mixin margin($property) {
+    margin: $property;
+}
+
+// hero banner
+@mixin filter($property) {
+    -webkit-filter: $property;
+    filter: $property;
+}
+
+@mixin transition($property) {
+    -webkit-transition: $property;
+    transition: $property;
+}
+
+@mixin transition-two($e1, $e2) {
+    -webkit-transition: $e1, $e2;
+    transition: $e1, $e2;
+}
+
+@mixin transform($property) {
+    -webkit-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
+
+@mixin transform-origin($property) {
+    -webkit-transform-origin: $property;
+    -ms-transform-origin: $property;
+    transform-origin: $property;
+}
+
+@mixin box-shadow($property) {
+    -webkit-box-shadow: $property;
+    box-shadow: $property;
+}
+
+@mixin bg-linear-gradient($from, $to) {
+    background: $from;
+    background: -webkit-gradient(linear, left bottom, left top, from($from), to($to));
+    background: linear-gradient(0deg, $from, $to);
+}
+
+@mixin bg-linear-gradient-two($deg, $from, $to) {
+    background: -webkit-linear-gradient($deg, $from, $to);
+    background: linear-gradient($deg, $from, $to);
+}
+
+@mixin animation($property) {
+    -webkit-animation: $property;
+    animation: $property;
+}
+
+@mixin column-fill($property) {
+    -moz-column-fill: $property;
+    -webkit-column-fill: $property;
+    column-fill: $property;
+}
+
+@mixin column-gap($property) {
+    -moz-column-gap: $property;
+    -webkit-column-gap: $property;
+    column-gap: $property;
+}
