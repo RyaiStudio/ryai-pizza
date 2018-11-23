@@ -29,3 +29,9 @@
 .ml-3 { @include margin-left(3rem) }
 .ml-4 { @include margin-left(4rem) }
 .ml-5 { @include margin-left(5rem) }
+
+.fl-right { float: right; }
+.fl-left { float: left; }
+.pos-absolute { position: absolute; }
+.pos-relative { position: relative; }
+.text-center { text-align: center }
