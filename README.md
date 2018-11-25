@@ -1,6 +1,7 @@
 # ryai-pitzza
 
 ## Project setup
+visit [ryai-pizza.herokuapp.com](https://ryai-pizza.herokuapp.com/)
 ```
 npm install
 ```
