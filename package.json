@@ -5,12 +5,15 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "node server/index.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.5.0",
     "axios": "^0.18.0",
     "bulma": "^0.7.2",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
     "firebase": "^5.5.9",
     "jquery": "^3.3.1",
     "sweetalert2": "^7.29.1",

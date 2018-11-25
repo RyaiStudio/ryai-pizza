@@ -14,6 +14,8 @@
       <div class="container">
         <div class="columns">
           <div class="column has-background-white-bis is-offset-1-widescreen is-10-widescreen">
+            <strong>order#</strong> {{ order_no }}
+            <br>
             <preview-box v-for="(item, key) in orders" 
               v-bind:key="key"
               v-bind:item="item"
@@ -54,17 +56,30 @@ export default {
     return {
       banner_height: '',
       imgSrc: DataSrc.front_page.banner_img,
+      order_no: null
     }
   },
   methods: {
     proceedPayment() {
       Swal('Thanks You', 'A big thanks to you ', 'success')
+    },
+
+    randomString(len, charSet) {
+      charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var randomString = '';
+      for (var i = 0; i < len; i++) {
+          var randomPoz = Math.floor(Math.random() * charSet.length);
+          randomString += charSet.substring(randomPoz,randomPoz+1);
+      }
+      return randomString;
     }
   },
   beforeMount() {
     if(this.orders.length === 0) {
       window.location.href = "/";
     }
+    
+    this.order_no = this.randomString(12);
   },
 }
 </script>
