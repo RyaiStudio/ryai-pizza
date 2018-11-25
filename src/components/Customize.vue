@@ -6,7 +6,9 @@
           <h1 class="title">Pizza Customizer</h1>
           <h2 class="subtitle">Customize your premade pizza</h2>
         </div>
-        <div class="column is-6-widescreen is-offset-1-fullhd is-fullhd-6"></div>
+        <div class="column is-6-widescreen is-offset-1-fullhd is-fullhd-6">
+          <me-content></me-content>
+        </div>
       </div>
     </banner-component>
     <section class="section has-background-white">
@@ -20,7 +22,8 @@
               v-on:addToppings="addToppings"
               v-on:changeSize="changeSize"
               v-on:changeCrust="changeCrust"
-              v-on:changeType="changeType" 
+              v-on:changeType="changeType"
+              v-bind:ref="'box-'+key"
               >
               <template slot="topping-whole" >
                 <ul class="ul-toppings mb-1">
@@ -43,6 +46,14 @@
             </box-custom>
           </div>
         </div>
+        <div class="columns">
+          <div class="column">
+            <div class="fl-right">
+              <router-link  to="/" class="button ">CANCEL</router-link>&nbsp;
+              <router-link  v-on:click.native="emitToParentRoute" to="/preview" class="button is-primary">SUBMIT TO CART</router-link>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <modal-content v-bind:class="[{ 'is-active': isActiveModal }]" 
@@ -57,11 +68,13 @@
 
 <script>
 import ServiceProvider from '../services'
+import _ from "underscore";
 
 import DataSrc from '../component-data'
 import BannerComponent from './partials/Banner'
 import BoxCustom from './partials/BoxCustom'
 import ModalContent from './partials/ModalTops'
+import Me from './partials/Me'
 
 export default {
   props: ['orders'],
@@ -69,7 +82,7 @@ export default {
     'banner-component': BannerComponent,
     'box-custom': BoxCustom,
     'modal-content': ModalContent,
-    // 'notification-content': NoficationContent,
+    'me-content': Me,
   },
   data() {
     return {
@@ -94,27 +107,64 @@ export default {
       this.mKey = null
       this.isActiveModal = false
       this.orders[tops.key][tops.tType] = tops.data
+      let tPrice = 0;
+      _.map(tops.data, item => {
+        tPrice += parseFloat(item.price)
+      })
+      let odrPrice = parseFloat(this.orders[tops.key].price) + tPrice
+      this.orders[tops.key].price = odrPrice.toFixed(2);
     },
-    changeSize(sval) {
-      console.log(sval)
+    // select event
+    changeSize(key) {
+      const refs = this.$refs['box-'+key][0].$refs['in_size-'+key];
+      let subTotal = 0;
+      if (refs.value == "medium") {
+        subTotal += 0.50;
+      } else if (refs.value == "large") {
+        subTotal += 1.00;
+      }
+      let odrPrice = parseFloat(this.orders[key].original_price) + subTotal;
+      this.orders[key].price = odrPrice.toFixed(2);
+      this.orders[key].size = refs.value
     },
-    changeCrust(sval) {
-      console.log(sval)
+    changeCrust(key) {
+      const refs = this.$refs['box-'+key][0].$refs['in_crust-'+key];
+      this.orders[key].crust = refs.value
     },
-    changeType(sval) {
-      console.log(sval)
+    changeType(key) {
+      const refs = this.$refs['box-'+key][0].$refs['in_type-'+key];
+      this.orders[key].type = refs.value
     },
+    // on emit to parent
+    emitToParentRoute() {
+      this.$emit('customize', this.orders);
+    }
   },
-  mounted() {
+  beforeMount() {
     if(this.orders.length === 0) {
       window.location.href = "/";
     }
+  },
+  mounted() {
 
     this.SerPro = new ServiceProvider();
-    this.baseUrl = this.SerPro.$baseUrl;
-    // API toppings
-    this.SerPro.toppings(res => {
-      this.toppings = res.data;
+    
+    // API pizzas
+    this.SerPro.toppings( res => {
+      this.toppings = _.map(res.data, item => {
+        return { price: item.price, label: item.toppings }
+      });
+    })
+    
+    _.map(this.orders, item => {
+      item.original_price = parseFloat(item.price)
+      item.size   = 'small'
+      item.crust  = 'hand-tossed'
+      item.type   = 'custom'
+      item.whole  = []
+      item.first  = []
+      item.second = []
+      return item;
     })
   }
 }

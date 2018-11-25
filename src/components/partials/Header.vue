@@ -6,7 +6,9 @@ v-bind:class="[{ 'is-transparent': is_transparent  }]">
       <a class="navbar-item" v-bind:href="domain_url">
         <img v-bind:src="logo" >
         </a>
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <a href="https://github.com/private-ryan23/ryai-pizza" class="navbar-item fg-fork no-desktop"><i class="fab fa-github fa-2x"></i></a>
+      <a href="http://ryaistudio.com/" class="navbar-item fg-fork no-desktop">RyaiStudio.com</a>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -18,13 +20,13 @@ v-bind:class="[{ 'is-transparent': is_transparent  }]">
           v-bind:key="key"  
           v-bind:to="nav.url" class="navbar-item">{{ nav.label }}</router-link>
         <!-- <router-link  to="About" class="navbar-item">About</router-link> -->
+        <a href="http://ryaistudio.com/" class="navbar-item fg-fork">RyaiStudio.com</a>
+        <label class="navbar-item fg-fork">#Mini Project</label>
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-primary">
-              <strong>Your Cart</strong>
-            </a>
+            <a href="https://github.com/private-ryan23/ryai-pizza" class="fg-fork">fork this on <i class="fab fa-github fa-2x"></i></a>
           </div>
         </div>
       </div>

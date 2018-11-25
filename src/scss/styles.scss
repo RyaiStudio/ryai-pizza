@@ -9,6 +9,7 @@
 @import "variables";
 @import "mixin";
 @import "partials";
+@import "responsive";
 
 /* header */
 nav.navbar {
@@ -214,5 +215,12 @@ nav.is-transparent {
       line-height: 1rem;
     }
   }
-  td { width: 33.333333% }
+  .item-toppings { border: 1px solid #eee; }
+}
+.no-box-shadow {
+  @include box-shadow(inherit);
+}
+.fg-fork { color: #ffffff;
+  @include transition(all .5s);
+  &:hover { color: #b3b1b1 }
 }

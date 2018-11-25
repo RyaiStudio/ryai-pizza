@@ -4,19 +4,22 @@
       <div class="columns">
         <div class="column is-6-widescreen is-5-fullhd">
           <h1 class="title">Mini pizza Taccos for everyone</h1>
-          <h2 class="subtitle">Order pizza by clicking the button below and get a 40% discount</h2>
+          <h2 class="subtitle">A dummy project fortpolio by Ryai</h2>
         </div>
         <div class="column is-6-widescreen is-offset-1-fullhd is-fullhd-6">
-          <div class="columns">
-            <div class="column">
-              no content
-            </div>
-          </div>
+          <me-content></me-content>
         </div>
       </div>
     </banner-component>
     <section class="section has-background-white">
       <div class="container">
+        <div class="columns" v-show="service_loaded">
+          <div class="column">
+            <div class="notification">
+              <i class="fas fa-spinner fa-spin"></i> featching data 
+            </div>
+          </div>
+        </div>
         <div class="columns">
           <div class="column is-4-widescreen is-3-fullhd">
             <div class="notification">
@@ -58,6 +61,7 @@ import DataSrc from '../component-data'
 import BannerComponent from './partials/Banner'
 import PizzaContent from './partials/Pizza'
 import NoficationContent from './partials/Notification'
+import Me from './partials/Me'
 
 export default {
   data() {
@@ -65,15 +69,17 @@ export default {
       banner_height: '',
       imgSrc: DataSrc.front_page.banner_img,
       orders: [],
-      pizzas: null,
-      toppings: null,
-      SerPro: null
+      pizzas: [],
+      toppings: [],
+      SerPro: null,
+      service_loaded: true
     }
   },
   components: {
     'banner-component': BannerComponent,
     'pizza-content': PizzaContent,
     'notification-content': NoficationContent,
+    'me-content': Me,
   },
   methods: {
     goBack() {
@@ -99,20 +105,20 @@ export default {
       this.$emit('customize', this.orders);
     }
   },
-  mounted() {
+  beforeMount() {
     this.SerPro = new ServiceProvider();
-    this.baseUrl = this.SerPro.$baseUrl;
     // API toppings
-    this.SerPro.toppings(res => {
-      this.toppings = res.data;
-    })
-    // API pizzas
-    this.SerPro.pizza( res => {
-      this.pizzas = _.map(res.data, item => {
-        item.image_path = this.baseUrl+'/'+item.image_path
+    this.SerPro.pizza(pizza => {
+      this.pizzas = _.map(pizza.data, item => {
+        item.description = item.dsecription
         return item;
-      });
+      })
     })
+  },
+  mounted() {
+    setTimeout(() => {
+      this.service_loaded = false
+    }, 1000);
   }
 }
 </script>

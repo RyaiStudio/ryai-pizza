@@ -12,10 +12,10 @@
               >
               <label class="checkbox" >
                 <input type="checkbox" ref="selectedTops" 
-                v-bind:label="tops.topping"
+                v-bind:label="tops.label"
                 v-bind:price="tops.price"
                 v-bind:value="key">
-                {{ tops.topping }}
+                {{ tops.label }}
               </label>
               <span class="fl-right">{{ ' $'+tops.price }}</span>
             </div>

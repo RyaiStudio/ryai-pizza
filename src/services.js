@@ -11,29 +11,39 @@ export default class ServiceProvider {
     this.$baseUrl = 'http://ryai-pizza.local';
   }
 
-  // get Toppings API
-  toppings(NewcCallBack) {
-    // const Promise;
+  /* postFirebase(callback) {
     axios({
       method: 'get',
-      url: this.$baseUrl + '/topping/list'
+      url: 'https://ryai-pizza.firebaseio.com/pizzas.json',
     }).then(response => {
-      NewcCallBack(response);
+      callback(response);
+    }).catch(error => {
+      this.vueAlert(error, "floater-danger");
+    });
+  } */
+
+  // get Toppings API
+  pizza(callback) {
+    axios({
+      method: 'get',
+      url: 'https://ryai-pizza.firebaseio.com/toppings.json',
+    }).then(response => {
+      callback(response);
     }).catch(error => {
       this.vueAlert(error, "floater-danger");
     });
   }
 
   // get pizza API
-  pizza(NewcCallBack) {
+  toppings(callback) {
     axios({
       method: 'get',
-      url: this.$baseUrl + '/pizza/list'
+      url: 'https://ryai-pizza.firebaseio.com/pizzas.json',
     }).then(response => {
-      NewcCallBack(response)
-    }).catch( error => {
+      callback(response);
+    }).catch(error => {
       this.vueAlert(error, "floater-danger");
-    })
+    });
   }
 
   // show alert

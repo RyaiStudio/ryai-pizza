@@ -2,7 +2,7 @@
     <div class="notification has-background-white-bis pizza-orders">
       <button class="delete" v-on:click="$emit('removeItem')" ></button>
       <div class="media">
-        <div class="media-left">
+        <div class="media-left no-mobile">
           <figure class="image is-48x48">
             <img v-bind:src="item.image_path" v-bind:alt="item.label">
           </figure>

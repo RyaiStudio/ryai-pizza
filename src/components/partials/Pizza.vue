@@ -24,5 +24,10 @@ export default {
 </script>
 
 <style>
-
+  .media-left .image img {
+    display: block;
+    height: 100%;
+    width: auto;
+    position: absolute;
+  }
 </style>

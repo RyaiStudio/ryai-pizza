@@ -1,12 +1,37 @@
 
+@media only screen and (min-width: $desktop) {
+  .no-desktop { display: none; }
+}
+
 @media (max-width: $fullhd) and (min-width: $desktop) {
-    .home-floater {
-        padding: 2rem 3rem !important;
-        width: 70% !important;
-        font-size: 0.9rem;
-        .image {
-            height: 100px;
-            width: 100px;
-        }
+  .home-floater {
+    padding: 2rem 3rem !important;
+    width: 70% !important;
+    font-size: 0.9rem;
+    .image {
+      height: 100px;
+      width: 100px;
     }
+  }
+}
+
+@media only screen and (max-width: $mobile-small) {
+  .no-mobile { display: none; }
+  .flex-card .notification {
+    width: 100% !important;
+  }
+  .modal-content, .media-content {
+    max-height: -webkit-fill-available;
+    overflow-x: inherit;
+  }
+  .no-margin-mobile { margin: 0; }
+  .media { flex-flow: row wrap; 
+    .media-left { margin: 0 auto; margin-bottom: 20px;
+      .image.is-128x128 {
+        height: 200px;
+        width: 200px;
+      }
+    }
+  }
+  .no-mobile { display: none; }
 }
