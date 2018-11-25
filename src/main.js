@@ -5,12 +5,6 @@ import routes from './routes';
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
-Vue.directive('label', {
-  inserted: function (el) {
-    // Focus the element
-    el.getAttribute('label');
-  }
-})
 
 const router = new VueRouter({
   routes,

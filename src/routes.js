@@ -1,4 +1,5 @@
 import OrderView from './components/OrderView.vue';
+import Custmomize from './components/Customize.vue';
 import Preview from './components/Preview.vue';
 import Invoice from './components/Invoice.vue';
 
@@ -8,11 +9,15 @@ const routes = [
         component: OrderView
     }, 
     {
-        path: '/Preview',
-        component: Preview
+        path: '/customize',
+        component: Custmomize
     }, 
     {
-        path: '/Invoice',
+        path: '/preview',
+        component: Preview
+    },
+    {
+        path: '/invoice',
         component: Invoice
     }
 ]

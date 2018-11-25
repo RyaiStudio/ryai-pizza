@@ -1,4 +1,8 @@
 .no-margin { margin: 0 }
+.no-bottom { margin-bottom: 0 }
+.no-margin-imp { margin: 0 !important}
+.no-bottom-imp { margin-bottom: 0 !important}
+
 
 .margin-1 { @include margin(1rem) }
 .margin-2 { @include margin(2rem) }
@@ -35,3 +39,7 @@
 .pos-absolute { position: absolute; }
 .pos-relative { position: relative; }
 .text-center { text-align: center }
+
+.dis-blk { display: block; }
+.dis-inl { display: inline; }
+.dis-inl-blk { display: inline-block; }

@@ -9,26 +9,28 @@
             <div class="notification flex-note"
               v-for="(tops, key) in toppings"
               v-bind:key="key"
-            >
+              >
               <label class="checkbox" >
-                <input type="checkbox" ref="selectedTops" v-label:label="tops.label"  v-bind:value="key">
-                {{ tops.label }}
+                <input type="checkbox" ref="selectedTops" 
+                v-bind:label="tops.topping"
+                v-bind:price="tops.price"
+                v-bind:value="key">
+                {{ tops.topping }}
               </label>
               <span class="fl-right">{{ ' $'+tops.price }}</span>
             </div>
           </div>
         </div>
         <footer class="card-footer">
-          <p class="card-footer-item pointer" v-on:click="$emit('closeModal')">
-            <span>close</span>
-          </p>
-          <p class="card-footer-item pointer" v-on:click="submitToppings">
-            <span>add now</span>
-          </p>
+          <p class="card-footer-item pointer" 
+            v-on:click="$emit('closeModal')"><span>close</span></p>
+          <p class="card-footer-item pointer" 
+            v-on:click="submitToppings"><span>add now</span></p>
         </footer>
       </div>
     </div>
-    <button class="modal-close is-large" aria-label="close"></button>
+    <button class="modal-close is-large" aria-label="close" 
+      v-on:click="$emit('closeModal')"></button>
   </div>
 </template>
 
@@ -36,7 +38,7 @@
 import Swal from 'sweetalert2'
 
 export default {
-  props: ['toppings'],
+  props: ['toppings', 'mKey', 'tType'],
   data() {
     return {
     }
@@ -48,13 +50,15 @@ export default {
       tops.forEach(item => {
         if(item.checked) {
           selTops.push({
-            id: parseInt(item.value)
+            id: parseInt(item.value),
+            label: item.getAttribute('label'),
+            price: item.getAttribute('price')
           });
-          console.log(item.label)
         }
       });
       if (selTops.length > 0) {
-        this.$emit('saveToppings', selTops);
+        this.$emit('saveToppings', { data:selTops, key: this.mKey, tType: this.tType });
+        tops.forEach( item => item.checked = false );
       } else {
         Swal('Oops...', 'Can\'t proceed without any toppings', 'error')
       }

@@ -1,8 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" class="pos-relative">
     <header-component></header-component>
-    <router-view></router-view>
+    <router-view v-bind:orders="orders" v-on:customize="customize" ></router-view>
     <footer-component></footer-component>
+    <div id="vue-alert" class="notification floater floater-danger"></div>
   </div>
 </template>
 
@@ -12,9 +13,19 @@ import FooterComponent from './components/partials/Footer'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      orders: []
+    }
+  },
   components: {
     'header-component': HeaderComponent,
     'footer-component': FooterComponent
+  },
+  methods: {
+    customize(orders) {
+      this.orders = orders
+    }
   }
 }
 </script>
